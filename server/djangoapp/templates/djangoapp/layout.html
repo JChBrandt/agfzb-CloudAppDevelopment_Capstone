@@ -1,4 +1,4 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,31 +10,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
-    <script
-        src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js">
+    </script>
 
 </head>
 
 <body>
     <!-- Header -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">National Car Dealership</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+            <a class="navbar-brand " href="# ">National Car Dealership</a>
+            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarNav " aria-controls="navbarNav " aria-expanded="false " aria-label="Toggle navigation ">
+                <span class="navbar-toggler-icon "></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'djangoapp:index' %}">Home<span class="sr-only">(current)</span></a>
+            <div class="collapse navbar-collapse " id="navbarNav ">
+                <ul class="navbar-nav ">
+                    <li class="nav-item active ">
+                        <a class="nav-link " href="{% url 'djangoapp:index' %} ">Home<span class="sr-only ">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'djangoapp:about' %}">About Us</a>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{% url 'djangoapp:about' %} ">About Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'djangoapp:contact' %}">Contact Us</a>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{% url 'djangoapp:contact' %} ">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -43,50 +43,50 @@
     <!-- Header -->
 
     <!-- Content -->
-    <section id="content" class="row container col-12 p-0 m-0 w-100">
-        <div class="main col-lg-9 col-md-12">{% block body %} {% endblock %}</div>
+    <section id="content " class="row container col-12 p-0 m-0 w-100 ">
+        <div class="main col-lg-9 col-md-12 ">{% block body %} {% endblock %}</div>
     </section>
     <!-- Content -->
 
     <!-- Footer -->
-    <footer class="page-footer font-small blue pt-4">
+    <footer class="page-footer font-small blue pt-4 ">
 
         <!-- Footer Links -->
-        <div class="container-fluid text-center text-md-left">
+        <div class="container-fluid text-center text-md-left ">
 
             <!-- Grid row -->
-            <div class="row">
+            <div class="row ">
 
                 <!-- Grid column -->
-                <div class="col-md-6 mt-md-0 mt-3">
+                <div class="col-md-6 mt-md-0 mt-3 ">
 
                     <!-- Content -->
-                    <h5 class="text-uppercase">Footer Content</h5>
+                    <h5 class="text-uppercase ">Footer Content</h5>
                     <p>Lorem ipsum</p>
 
-                </div>  
+                </div>
 
 
-                <hr class="clearfix w-100 d-md-none pb-3">
+                <hr class="clearfix w-100 d-md-none pb-3 ">
 
                 <!-- Grid column -->
-                <div class="col-md-3 mb-md-0 mb-3">
+                <div class="col-md-3 mb-md-0 mb-3 ">
 
                     <!-- Links -->
-                    <h5 class="text-uppercase">Links</h5>
+                    <h5 class="text-uppercase ">Links</h5>
 
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled ">
                         <li>
-                            <a href="#!">Link 1</a>
+                            <a href="#! ">Link 1</a>
                         </li>
                         <li>
-                            <a href="#!">Link 2</a>
+                            <a href="#! ">Link 2</a>
                         </li>
                         <li>
-                            <a href="#!">Link 3</a>
+                            <a href="#! ">Link 3</a>
                         </li>
                         <li>
-                            <a href="#!">Link 4</a>
+                            <a href="#! ">Link 4</a>
                         </li>
                     </ul>
 
@@ -94,23 +94,23 @@
                 <!-- Grid column -->
 
                 <!-- Grid column -->
-                <div class="col-md-3 mb-md-0 mb-3">
+                <div class="col-md-3 mb-md-0 mb-3 ">
 
                     <!-- Links -->
-                    <h5 class="text-uppercase">Links</h5>
+                    <h5 class="text-uppercase ">Links</h5>
 
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled ">
                         <li>
-                            <a href="#!">Link 1</a>
+                            <a href="#! ">Link 1</a>
                         </li>
                         <li>
-                            <a href="#!">Link 2</a>
+                            <a href="#! ">Link 2</a>
                         </li>
                         <li>
-                            <a href="#!">Link 3</a>
+                            <a href="#! ">Link 3</a>
                         </li>
                         <li>
-                            <a href="#!">Link 4</a>
+                            <a href="#! ">Link 4</a>
                         </li>
                     </ul>
 
@@ -124,8 +124,8 @@
         <!-- Footer Links -->
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">Author:
-            <a href="https://lxmarinkovic.com/"> lxmarinkovic</a>
+        <div class="footer-copyright text-center py-3 ">Author:
+            <a href="https://lxmarinkovic.com/ "> lxmarinkovic</a>
         </div>
         <!-- Copyright -->
 
