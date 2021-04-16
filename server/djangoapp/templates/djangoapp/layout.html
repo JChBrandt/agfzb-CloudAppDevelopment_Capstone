@@ -40,19 +40,21 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                <li>
-                    <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
-                    <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link ml-3 dropdown-toggle" href="#" role="button" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.first_name }}({{ user.username }})</a>
+                    <div class="dropdown-menu" aria-labelledby="userDropdownMenu">
+                        <a class="dropdown-item" href="{% url 'djangoapp:logout' %}">Logout</a>
+                    </div>
                 </li>
                 {% else %}
                 <li>
-                    <form class="form-inline" action="{% url 'djangoapp:login' %}" method="POST">
+                    <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
                         {% csrf_token %}
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Username" name="username">
-                            <input type="password" class="form-control" placeholder="Password" name="passw">
-                            <button class="btn btn-primary" type="submit">Login</button>
-                            <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm mr-1" placeholder="Username" name="username">
+                            <input type="password" class="form-control form-control-sm mr-1" placeholder="Password" name="password">
+                            <button class="btn btn-sm btn-light mr-1" type="submit">Login</button>
+                            <a class="btn btn-sm btn-dark" href="{% url 'djangoapp:registration' %}">Sign Up</a>
                         </div>
                     </form>
                 </li>
@@ -87,7 +89,7 @@
                     <!-- Content -->
                     <h5 class="text-uppercase ">Footer Content</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
+                    </p>
 
                 </div>
 

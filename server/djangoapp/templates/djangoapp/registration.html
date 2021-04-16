@@ -1,24 +1,34 @@
 {% extends "djangoapp/layout.html" %} {% block content %}
 
- <form action="{% url 'djangoapp:registration' %}" method="POST">
-        <div class="container lead mt-5 text-center">
-            <h1>Sign Up</h1>
-            <hr>
-            <div class="card-columns-vertical">
-                <label for="username"><b>User Name</b></label>
-                <input type="text" class="form-control" placeholder="Enter User Name: " name="username" required>
-                <label for="firstname"><b>First Name</b></label>
-                <input type="text" class="form-control" placeholder="Enter First Name: " name="firstname" required>
-                <label for="lastname"><b>Last Name</b></label>
-                <input type="text" class="form-control" placeholder="Enter Last Name: " name="lastname" required>
-                <label for="psw"><b>Password</b></label>
-                <input type="password" class="form-control" placeholder="Enter Password: " name="passw" required>
+<h1>Sign up</h1>
+<form action="{% url 'djangoapp:registration' %}" method="post">
+    {% csrf_token %}
+    <div class="row justify-content-center">
+        <div class="col-6 text-left">
+            <div class="form-group">
+                <label for="userNameInput">User Name</label>
+                <input type="text" class="form-control" id="userNameInput" placeholder="Enter User Name..." name="username" required>
             </div>
-            <div>
-                {% csrf_token %}
-                <button class="btn btn-primary mt-3" type="submit">Sign Up</button>
+            <div class="form-group">
+                <label for="firstNameInput">First Name</label>
+                <input type="text" class="form-control" id="firstNameInput" placeholder="Enter First Name..." name="firstname" required>
             </div>
+            <div class="form-group">
+                <label for="lastNameInput">Last Name</label>
+                <input type="text" class="form-control" id="lastNameInput" placeholder="Enter Last Name..." name="lastname" required>
+            </div>
+            <div class="form-group">
+                <label for="passwordInput">Password</label>
+                <input type="password" class="form-control" id="passwordInput" placeholder="Enter Password..." name="password" required>
+            </div>
+            {% if message %}
+            <div class="alert alert-warning my-3">
+                {{ message }}
+            </div>
+            {% endif %}
+            <button class="btn btn-primary">Sign Up</button>
         </div>
-    </form>
+    </div>
+</form>
 
-    {% endblock %}
+{% endblock %}
