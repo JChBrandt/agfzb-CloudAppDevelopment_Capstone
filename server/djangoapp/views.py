@@ -27,8 +27,6 @@ def about(request):
     return about_view
 
 # Create a `contact` view to return a static contact page
-
-
 def contact(request):
     """ Contact View """
     context = {}
@@ -38,8 +36,6 @@ def contact(request):
 
 
 # Create a `login_request` view to handle sign in request
-
-
 def login_request(request):
     """ Login Request """
     context = {}
@@ -51,15 +47,14 @@ def login_request(request):
             login(request, user)
             login_view = redirect('djangoapp:index')
         else:
-            context['message'] = ("Please enter correct username and password!")
+            context['message'] = (
+                "Please enter correct username and password!")
             login_view = render(request, 'djangoapp/index.html', context)
     else:
         login_view = render(request, 'djangoapp/index.html', context)
     return login_view
 
 # Create a `logout_request` view to handle sign out request
-
-
 def logout_request(request):
     """ Logout Request """
     logout(request)
@@ -67,8 +62,6 @@ def logout_request(request):
     return logout_view
 
 # Create a `registration_request` view to handle sign up request
-
-
 def registration_request(request):
     """ Registration Request """
     context = {}
@@ -80,11 +73,13 @@ def registration_request(request):
         first_name = request.POST['firstname']
         last_name = request.POST['lastname']
         if User.objects.filter(username=username).exists():
-            context['message'] = ("Username {} already exists!".format(username))
-            register_view = render(request, 'djangoapp/registration.html', context)
+            context['message'] = (
+                "Username {} already exists!".format(username))
+            register_view = render(
+                request, 'djangoapp/registration.html', context)
         else:
             user = User.objects.create_user(
-            username=username, first_name=first_name, last_name=last_name, password=password)
+                username=username, first_name=first_name, last_name=last_name, password=password)
             login(request, user)
             register_view = redirect("djangoapp:index")
     elif request.method == 'GET':
