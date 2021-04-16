@@ -54,11 +54,11 @@
                             <input type="text" class="form-control form-control-sm mr-1" placeholder="Username" name="username" required>
                             <input type="password" class="form-control form-control-sm mr-1" placeholder="Password" name="password" required>
                             <button class="btn btn-sm btn-light mr-1" type="submit">Login</button>
-                            <a class="btn btn-sm btn-dark" href="{% url 'djangoapp:registration' %}">Sign Up</a> {{error_message}}
+                            <a class="btn btn-sm btn-dark" href="{% url 'djangoapp:registration' %}">Sign Up</a>
                         </div>
                     </form>
                     {% if message %}
-                    <div class="position-absolute alert alert-warning my-3">
+                    <div class="position-absolute alert alert-warning my-4">
                         {{ message }}
                     </div>
                     {% endif %}
