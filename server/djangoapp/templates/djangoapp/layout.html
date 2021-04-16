@@ -41,9 +41,9 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link ml-3 dropdown-toggle" href="#" role="button" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.first_name }}({{ user.username }})</a>
-                    <div class="dropdown-menu" aria-labelledby="userDropdownMenu">
-                        <a class="dropdown-item" href="{% url 'djangoapp:logout' %}">Logout</a>
+                    <a class="nav-link ml-3 dropdown-toggle" href="#" role="button" id="user-logout-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.first_name }}</a>
+                    <div class="dropdown-menu" aria-labelledby="user-logout-dropdown">
+                        <a class="dropdown-item" href="{% url 'djangoapp:logout' %}">Log Out</a>
                     </div>
                 </li>
                 {% else %}
@@ -51,12 +51,17 @@
                     <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-sm mr-1" placeholder="Username" name="username">
-                            <input type="password" class="form-control form-control-sm mr-1" placeholder="Password" name="password">
+                            <input type="text" class="form-control form-control-sm mr-1" placeholder="Username" name="username" required>
+                            <input type="password" class="form-control form-control-sm mr-1" placeholder="Password" name="password" required>
                             <button class="btn btn-sm btn-light mr-1" type="submit">Login</button>
-                            <a class="btn btn-sm btn-dark" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                            <a class="btn btn-sm btn-dark" href="{% url 'djangoapp:registration' %}">Sign Up</a> {{error_message}}
                         </div>
                     </form>
+                    {% if message %}
+                    <div class="position-absolute alert alert-warning my-3">
+                        {{ message }}
+                    </div>
+                    {% endif %}
                 </li>
                 {% endif %}
             </ul>
