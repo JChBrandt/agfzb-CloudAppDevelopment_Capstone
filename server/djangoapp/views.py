@@ -68,7 +68,7 @@ def registration_request(request):
     # if request.method == 'GET':
     #     return render(request, 'djangoapp/registration.html', context)
     if request.method == 'POST':
-        username = request.POST['user_name']
+        username = request.POST['username']
         password = request.POST['password']
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
