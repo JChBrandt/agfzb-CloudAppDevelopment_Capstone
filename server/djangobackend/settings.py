@@ -26,8 +26,7 @@ SECRET_KEY = 'ao5z(o(z@cvzodm99d32jkxa5e8a1!q_4sqss5-a%n6tg$#h$+'
 DEBUG = True
 
 ALLOWED_HOSTS = ["djangoapp-lx.us-south.cf.appdomain.cloud"]
-# ALLOWED_HOSTS = []
-
+#ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -39,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'fontawesome-free',
 ]
 
 MIDDLEWARE = [
@@ -114,7 +114,6 @@ USE_I18N = True
 
 USE_L10N = True
 
-
 USE_TZ = True
 
 
@@ -122,9 +121,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'static','media')
 MEDIA_URL = '/media/'
-    

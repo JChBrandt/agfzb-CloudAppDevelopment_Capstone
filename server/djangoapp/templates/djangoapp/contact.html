@@ -1,12 +1,15 @@
-{% extends "djangoapp/layout.html" %} {% block content %}
-
-<h2>Contact Us</h2>
-<address>
-<strong>Address:</strong><br>
-Best Cars<br>
-Sweden Street 4, Sweden Town<br>
-Sweden<br>
-<strong>Telephone:</strong><br>
-<a href="tel:+46444444444">+46 (0) 44 - 444 44 44</a>
-</address>
- {% endblock %}
+{% extends 'djangoapp/layout.html' %}{% block content %}
+<h1 class="skeleton-heading">Contact Us</h1>
+<div class="row">
+    <div class="col-lg-4 offset-lg-4 p-4 h-100 d-flex  bg-dark text-white">
+        <address class="text-left mt-4 p-2">
+            <strong class="text-orange">Address:</strong><br>
+            Best Cars<br>
+            Sweden Street 4, Sweden Town<br>
+            Sweden<br>
+            <strong class="text-orange">Telephone:</strong><br>
+            <a href="tel:+46444444444">+46 (0) 44 - 444 44 44</a>
+        </address>
+    </div>
+</div>
+{% endblock %}

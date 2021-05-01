@@ -1,34 +1,31 @@
 {% extends "djangoapp/layout.html" %} {% block content %}
-
-<h1>Sign up</h1>
-<form action="{% url 'djangoapp:registration' %}" method="post">
-    {% csrf_token %}
-    <div class="row justify-content-center">
-        <div class="col-6 text-left">
-            <div class="form-group">
-                <label for="inputUserName">User Name</label>
-                <input type="text" class="form-control" id="inputUserName" placeholder="Enter User Name" name="username" required>
+<h1 class="skeleton-heading">Register Account</h1>
+<div class="row">
+    <div class="col-12 bg-dark p-4 text-white">
+        <form class="flex bg-dark text-white my-2" action="{% url 'djangoapp:registration' %}" method="post">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+                <div class="col-6 text-left">
+                    <div class="form-group">
+                        <label for="username">User Name</label>
+                        <input id="username" class="form-control bg-dark text-white mr-2 w-100" type="text" name="username" placeholder="Enter your user name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input id="firstname" class="form-control bg-dark text-white mr-2 w-100" type="text" name="firstname" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input id="lastname" class="form-control bg-dark text-white mr-2 w-100" type="text" name="lastname" placeholder="Enter your last name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" class="form-control bg-dark text-white mr-2 w-100" type="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <button class="btn bg-orange text-white" type="submit">Register</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="inputFirstName">First Name</label>
-                <input type="text" class="form-control" id="inputFirstName" placeholder="Enter First Name" name="first_name" required>
-            </div>
-            <div class="form-group">
-                <label for="inputLastName">Last Name</label>
-                <input type="text" class="form-control" id="inputLastName" placeholder="Enter Last Name" name="last_name" required>
-            </div>
-            <div class="form-group">
-                <label for="inputPassword">Password</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="Enter Password" name="password" required>
-            </div>
-            {% if message %}
-            <div class="alert alert-warning my-4">
-                {{ message }}
-            </div>
-            {% endif %}
-            <button class="btn btn-primary">Sign Up</button>
-        </div>
+        </form>
     </div>
-</form>
-
+</div>
 {% endblock %}
