@@ -25,8 +25,8 @@ SECRET_KEY = 'ao5z(o(z@cvzodm99d32jkxa5e8a1!q_4sqss5-a%n6tg$#h$+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ["djangoapp-lx.us-south.cf.appdomain.cloud"]
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["djangoapp-lx.us-south.cf.appdomain.cloud"]
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -122,9 +122,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
-# MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static','media')
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
+MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'static','media')
 MEDIA_URL = '/media/'
     
