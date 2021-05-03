@@ -1,3 +1,6 @@
+# Live demo: 
+https://djangoapp-lx2.us-south.cf.appdomain.cloud/djangoapp/
+
 # Final Project Template
 
 The final project for this course has several steps that you must complete. 
