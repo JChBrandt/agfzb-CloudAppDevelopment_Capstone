@@ -1,6 +1,17 @@
 # Live demo: 
 https://djangoapp-lx2.us-south.cf.appdomain.cloud/djangoapp/
 
+# Tools and resources
+
+- Django
+- Bootstrap *(UI based on Bootstrap Cover template)*
+- Font Awesome
+- IBM Cloud Foundry
+- IBM Cloudant
+- IBM Cloud Functions 
+- IBM API Gateway
+- IBM Watson NLU
+
 # Final Project Template
 
 The final project for this course has several steps that you must complete. 
