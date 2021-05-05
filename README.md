@@ -3,9 +3,9 @@ https://djangoapp-lx2.us-south.cf.appdomain.cloud/djangoapp/
 
 # Tools and resources
 
-- Django
-- Bootstrap *(UI based on Bootstrap Cover template)*
-- Font Awesome
+- Django https://www.djangoproject.com/
+- Bootstrap *(UI based on Bootstrap Cover template)* https://getbootstrap.com/docs/4.0/examples/cover/
+- Font Awesome https://fontawesome.com/
 - IBM Cloud Foundry
 - IBM Cloudant
 - IBM Cloud Functions 
