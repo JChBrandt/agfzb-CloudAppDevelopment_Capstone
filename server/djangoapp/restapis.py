@@ -1,4 +1,4 @@
-""" Rest APIs"""
+""" Djangoapp Rest APIs"""
 import json
 import requests
 from .models import CarDealer, DealerReview
