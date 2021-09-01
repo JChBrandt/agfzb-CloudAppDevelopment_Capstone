@@ -1,11 +1,11 @@
   applications:
-  - name: djangoapp
+  - name: jcsbestcardealersapp
     routes:
-      - route: $HOST.$DOMAIN
+      - route: jcsbestcardealersapp.eu-gb.cf.appdomain.cloud 
     memory: 128M
     buildpack: python_buildpack
-  - name: djangoapp-nginx
+  - name: jcsbestcardealersapp-nginx
     routes:
-      - route: $HOST.$DOMAIN/static
+      - route: jcsbestcardealersapp.eu-gb.cf.appdomain.cloud/static
     memory: 128M
     buildpack: staticfile_buildpack
