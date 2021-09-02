@@ -17,14 +17,46 @@
     <!-- Remove this line the first time you edit this file -->
      
     <!--Add a nav bar here -->
-    <nav class="nav nav-tabs">
+    <div class="container-fluid">
+    <div class="row no-gutters">
+        <div class="col-sm d-flex justify-content-start">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Best Dealerships</a>
+        </div>
+        <nav class="navbar nav-pills">
         {% block nav %}
         {% block nav-home %}<a class="nav-item nav-link active" href="{% url 'djangoapp:index' %}">Home</a>{% endblock %}
         {% block nav-about %}<a class="nav-item nav-link" href="{% url 'djangoapp:about' %}">About</a>{% endblock %}
         {% block nav-contact %}<a class="nav-item nav-link" href="{% url 'djangoapp:contact' %}">Contact</a>{% endblock %}
         {% endblock %}
-    </nav>
-
+        </nav>
+        </div>
+        <div class="col-sm d-flex justify-content-end">
+        <nav class="navbar">
+         <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+                <li>
+                    <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a></li>
+                    <a class="btn btn-link" href="#"></a><a class="btn btn-link" href="#}">Logout</a>
+                </li>
+        {% else %}
+        <li>
+         <form class="form-inline" action="{#}" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                 <input type="text" class="form-control" placeholder="Username" name="username" >
+                 <input type="password" class="form-control" placeholder="Password" name="psw" >
+                 <button class="btn btn-primary" type="submit">Login</button>
+                 <a class="btn btn-link" href="{#}">Sign Up</a>
+            </div>
+         </form>
+        </li>
+        {% endif %}
+        </ul>
+        </nav>
+        </div>        
+    </div>
+    
     <!--Add a dealer table here -->
 
     </body>
