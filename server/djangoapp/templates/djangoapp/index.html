@@ -15,15 +15,13 @@
 
     <body>
     <!-- Remove this line the first time you edit this file -->
-     This is the index page of your Django app!
+     
     <!--Add a nav bar here -->
-    <nav>
+    <nav class="nav nav-tabs">
         {% block nav %}
-        <ul id="nav">
-            <li>{% block nav-home %}<a href="{% url 'djangoapp:index' %}">Home</a>{% endblock %}</li>
-            <li>{% block nav-about %}<a href="{% url 'djangoapp:about' %}">About</a>{% endblock %}</li>
-            <li>{% block nav-contact %}<a href="{% url 'djangoapp:contact' %}">Contact</a>{% endblock %}</li>
-        </ul>
+        {% block nav-home %}<a class="nav-item nav-link active" href="{% url 'djangoapp:index' %}">Home</a>{% endblock %}
+        {% block nav-about %}<a class="nav-item nav-link" href="{% url 'djangoapp:about' %}">About</a>{% endblock %}
+        {% block nav-contact %}<a class="nav-item nav-link" href="{% url 'djangoapp:contact' %}">Contact</a>{% endblock %}
         {% endblock %}
     </nav>
 
