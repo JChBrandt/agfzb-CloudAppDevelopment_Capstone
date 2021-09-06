@@ -5,9 +5,9 @@ on: workflow_dispatch
 # Environment variables available to all jobs and steps in this workflow
 env:
   IBM_CLOUD_REGION: eu-gb
-  IBM_CLOUD_GROUP: jan.brandt@tu-dortmund.de / djangoserver-space
-  IBM_CLOUD_SPACE: dev
-  IBM_CLOUD_ORG:
+  IBM_CLOUD_GROUP: default
+  IBM_CLOUD_SPACE: djangoserver-space
+  IBM_CLOUD_ORG: jan.brandt@tu-dortmund.de
   MANIFEST_NAME: manifest.yml
   IBM_CLOUD_API: QsvLy0c28elFoOjYeEHIhOxTA6b0iAC3Hmdc8gHZ-rV9
 
