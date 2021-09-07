@@ -68,7 +68,7 @@ class CarModel(models.Model):
     maker = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     dealerid = models.IntegerField(default=0)
     name = models.CharField(null=False, max_length=30)
-    type = models.CharField(max_length=10, choices=CAR_TYPE, default=SEDAN)
+    modeltype = models.CharField(max_length=10, choices=CAR_TYPE, default=SEDAN)
     engine = models.CharField(max_length=30)
     year = models.DateField(null=True)
 
