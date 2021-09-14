@@ -1,10 +1,12 @@
+from cloudant.client import Cloudant
+from cloudant.error import CloudantException
 import requests
 import json
 # import related models here
 from requests.auth import HTTPBasicAuth
-from .local.settings import COUCH_USERNAME, IAM_API_KEY
+from .local_settings import COUCH_URL, COUCH_USERNAME, IAM_API_KEY
 
-API_URL_DEALERSHIP, API_URL_REVIEW, API_URL_SENTIMENT
+# API_URL_DEALERSHIP, API_URL_REVIEW, API_URL_SENTIMENT
 
 # Create a `get_request` to make HTTP GET requests
 # e.g., response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
@@ -12,23 +14,24 @@ API_URL_DEALERSHIP, API_URL_REVIEW, API_URL_SENTIMENT
 def get_request(url, **kwargs):
     try:
         response = requests.get(url, headers={'Content-Type': 'application/json'}, params=kwargs)
+        json_data = json.loads(response.text)
+        return json_data
     except:
         # If any error occurs
         print("Network exception occurred")
 #    status_code = response.status_code
-    json_data = json.loads(response.text)
-    return json_data
+
 
 # Create a `post_request` to make HTTP POST requests
 # e.g., response = requests.post(url, params=kwargs, json=payload)
 def post_request(url, json_payload, **kwargs):
     try:
         response = requests.post(url, json=json_payload, params=kwargs)
+        json_data = json.loads(response.text)
+        return response
     except:
-        print("Network exception occurred")
-#    json_data = json.loads(response.text)
-#    return json_data
-    return response
+        print(json_data)
+
 
 # Create a get_dealers_from_cf method to get dealers from a cloud function
 def get_dealers_from_cf(url, **kwargs):
@@ -53,10 +56,8 @@ def get_dealers_from_cf(url, **kwargs):
             results.append(dealer)
     return results
 
-# def get_dealer_reviews_from_cf(dealerId):
-
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
-def get_dealer_by_id_from_cf(url, dealerId):
+def get_dealer_reviews_from_cf(url, dealerId):
     results = []
     json_result = get_request(url, dealerId=dealerId)
     if json_result:
