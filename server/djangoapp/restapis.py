@@ -2,7 +2,7 @@ from cloudant.client import Cloudant
 from cloudant.error import CloudantException
 import requests
 import json
-# import related models here
+from .models import CarDealer
 from requests.auth import HTTPBasicAuth
 from .local_settings import COUCH_URL, COUCH_USERNAME, IAM_API_KEY
 
@@ -42,7 +42,7 @@ def get_dealers_from_cf(url, **kwargs):
     if json_result:
         dealerships = json_result['dealerships']
         for anydealer in dealerships:
-            dealer = models.CarDealer(
+            dealer = CarDealer(
                 id=anydealer["id"],
                 address=anydealer["address"], 
                 city=anydealer["city"],
