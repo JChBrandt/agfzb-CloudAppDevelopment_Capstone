@@ -94,6 +94,6 @@ class CarDealer():
             "City: " + self.city + ", " + \
             "Adress: " + self.adress + ", " + \
             "Zip: " + self.zip + ", " + \
-            "state: " + self.state + ", " + \
+            "state: " + self.state
 
 # <HINT> Create a plain Python class `DealerReview` to hold review data
