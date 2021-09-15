@@ -79,7 +79,21 @@ class CarModel(models.Model):
             "Year: " + self.year.strftime('%Y-%m-%d')
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
-# class CarDealer():
+class CarDealer():
+    id = models.AutoField(primary_key=True)
+    city = models.CharField(null=False, max_length=30)
+    adress = models.CharField(null=False, max_length=30)
+    zip = models.IntegerField(max_length=5)
+    st = models.CharField(null=False, max_length=2)
+    state = models.CharField(null=False, max_length=30)
+    lat = models.DecimalField(max_digits=6,decimal_places=4)
+    long = models.DecimalField(max_digits=6,decimal_places=4)
 
+    def __str__(self):
+    return "id: " + self.id + ", " + \
+        "City: " + self.city + ", " + \
+        "Adress: " + self.adress + ", " + \
+        "Zip: " + self.zip + ", " + \
+        "state: " + self.state + ", " + \
 
 # <HINT> Create a plain Python class `DealerReview` to hold review data
