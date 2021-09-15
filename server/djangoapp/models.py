@@ -90,10 +90,10 @@ class CarDealer():
     long = models.DecimalField(max_digits=6,decimal_places=4)
 
     def __str__(self):
-    return "id: " + self.id + ", " + \
-        "City: " + self.city + ", " + \
-        "Adress: " + self.adress + ", " + \
-        "Zip: " + self.zip + ", " + \
-        "state: " + self.state + ", " + \
+        return "id: " + self.id + ", " + \
+            "City: " + self.city + ", " + \
+            "Adress: " + self.adress + ", " + \
+            "Zip: " + self.zip + ", " + \
+            "state: " + self.state + ", " + \
 
 # <HINT> Create a plain Python class `DealerReview` to hold review data
