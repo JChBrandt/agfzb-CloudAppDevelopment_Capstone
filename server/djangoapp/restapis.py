@@ -122,3 +122,7 @@ def add_dealer_review(review_to_post):
 def analyze_review_sentiments(text):
 # - Call get_request() with specified arguments
 # - Get the returned sentiment label such as Positive or Negative
+    json_result = get_request(API_URL_SENTIMENT, text=text)
+    if json_result:
+        sentiment_result = json_result.get('label', 'neutral')
+    return sentiment_result
