@@ -2,9 +2,9 @@ from cloudant.client import Cloudant
 from cloudant.error import CloudantException
 import requests
 import json
-from .models import CarDealer
+from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
-from .local_settings import COUCH_URL, COUCH_USERNAME, IAM_API_KEY
+from .local_params_settings import COUCH_URL, COUCH_USERNAME, IAM_API_KEY
 
 # API_URL_DEALERSHIP, API_URL_REVIEW, API_URL_SENTIMENT
 
@@ -44,6 +44,8 @@ def get_dealers_from_cf(url, **kwargs):
         for anydealer in dealerships:
             dealer = CarDealer(
                 id=anydealer["id"],
+                full_name=anydealer["full_name"],
+                short_name=anydealer["short_name"],
                 address=anydealer["address"], 
                 city=anydealer["city"],
                 st=anydealer["st"], 
@@ -59,19 +61,20 @@ def get_dealer_reviews_from_cf(url, dealerId):
     results = []
     json_result = get_request(url, dealerId=dealerId)
     if json_result:
-        reviews = json_result["entries"]
+        reviews = json_result["reviews"]
         for anyreview in reviews:
-            sentiment = analyze_review_sentiments(anyreview["review"])
+            sentiment = "sentiment"
+#            sentiment = analyze_review_sentiments(anyreview["review"])
             review = DealerReview(
                 id=anyreview["id"],
                 name=anyreview["name"],
                 dealership=anyreview["dealership"],
                 review=anyreview["review"],
                 purchase=anyreview["purchase"],
-                purchase_date=anyreview["purchase_date"],
                 car_make=anyreview["car_make"],
                 car_model=anyreview["car_model"],
                 car_year=anyreview["car_year"],
+                purchase_date=anyreview["purchase_date"],
                 sentiment=sentiment
             )
             results.append(review)
