@@ -1,36 +1,36 @@
 from cloudant.client import Cloudant
 from cloudant.error import CloudantException
+from ibm_watson import NaturalLanguageUnderstandingV1
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+from ibm_watson.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions
 import requests
 import json
 from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
-from .local_params_settings import COUCH_URL, COUCH_USERNAME, IAM_API_KEY
+from .local_params_settings import COUCH_URL, COUCH_USERNAME, IAM_API_KEY, API_URL_SENTIMENT, API_KEY_NLU
 
 # API_URL_DEALERSHIP, API_URL_REVIEW, API_URL_SENTIMENT
 
 # Create a `get_request` to make HTTP GET requests
 # e.g., response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
 #                                     auth=HTTPBasicAuth('apikey', api_key))
-def get_request(url, **kwargs):
+def get_request(url, api_key=None, **kwargs):
     try:
-        response = {}
+        print("params: ",kwargs)
         if api_key:
-            response = requests.get(
-                url, 
-                headers={'Content-Type': 'application/json'}, 
-                auth=HTTPBasicAuth('apikey', api_key),
-                params=kwargs)
+            response = requests.get(url, headers={'Content-Type': 'application/json'},
+                                        auth=HTTPBasicAuth('apikey', api_key),
+                                        params=kwargs)
         else:
-            response = requests.get(
-                url, 
-                headers={'Content-Type': 'application/json'}, 
-                params=kwargs)
-        json_data = json.loads(response.text)
-        return json_data
+            response = requests.get(url, headers={'Content-Type': 'application/json'},
+                                        params=kwargs)
     except:
         # If any error occurs
         print("Network exception occurred")
-#    status_code = response.status_code
+    status_code = response.status_code
+    print("With status {} ".format(status_code))
+    json_data = json.loads(response.text)
+    return json_data
 
 # Create a `post_request` to make HTTP POST requests
 # e.g., response = requests.post(url, params=kwargs, json=payload)
@@ -58,6 +58,7 @@ def get_dealers_from_cf(url, **kwargs):
                 short_name=anydealer["short_name"],
                 address=anydealer["address"], 
                 city=anydealer["city"],
+                state=anydealer["state"], 
                 st=anydealer["st"], 
                 zip=anydealer["zip"],
                 lat=anydealer["lat"], 
@@ -73,8 +74,7 @@ def get_dealer_reviews_from_cf(url, dealerId):
     if json_result:
         reviews = json_result["reviews"]
         for anyreview in reviews:
-            sentiment = "sentiment"
-#            sentiment = analyze_review_sentiments(anyreview["review"])
+            sentiment = analyze_review_sentiments(anyreview["review"])
             review = {}
             if anyreview["purchase"]:
                 review = DealerReview(
@@ -99,7 +99,7 @@ def get_dealer_reviews_from_cf(url, dealerId):
                   car_model=None,
                   car_year=None,
                   purchase_date=None,
-                  sentiment=None)                   
+                  sentiment=sentiment)                   
             results.append(review)
     return results
 
@@ -122,7 +122,27 @@ def add_dealer_review(review_to_post):
 def analyze_review_sentiments(text):
 # - Call get_request() with specified arguments
 # - Get the returned sentiment label such as Positive or Negative
-    json_result = get_request(API_URL_SENTIMENT, text=text)
-    if json_result:
-        sentiment_result = json_result.get('label', 'neutral')
-    return sentiment_result
+#    sentiment_result="not analyzed"
+#    try:
+#        json_result = get_request(API_URL_SENTIMENT, api_key=API_KEY_NLU, features="sentiment", text=text)
+#        print(json_result)
+#        if json_result:
+#            sentiment_result = json_result["sentiment"]["document"]["label"]
+#    finally:
+#        print(text)
+#        print(sentiment_result)
+#        return sentiment_result
+
+    authenticator = IAMAuthenticator(API_KEY_NLU)
+    natural_language_understanding = NaturalLanguageUnderstandingV1(
+        version='2021-03-25',
+        authenticator=authenticator)
+    
+    natural_language_understanding.set_service_url(API_URL_SENTIMENT)
+    
+    response = natural_language_understanding.analyze(
+        text=text,
+        features=Features(
+            entities=EntitiesOptions(emotion=True, sentiment=True, limit=2),
+            keywords=KeywordsOptions(emotion=True, sentiment=True,limit=2))).get_result()
+    return response["keywords"][0]["sentiment"]["label"]
