@@ -68,9 +68,9 @@ def get_dealers_from_cf(url, **kwargs):
     return results
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
-def get_dealer_reviews_from_cf(url, dealerId):
+def get_dealer_reviews_from_cf(url, dealerid):
     results = []
-    json_result = get_request(url, dealerId=dealerId)
+    json_result = get_request(url, dealerid=dealerid)
     if json_result:
         reviews = json_result["reviews"]
         for anyreview in reviews:
@@ -120,19 +120,6 @@ def add_dealer_review(review_to_post):
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
 def analyze_review_sentiments(text):
-# - Call get_request() with specified arguments
-# - Get the returned sentiment label such as Positive or Negative
-#    sentiment_result="not analyzed"
-#    try:
-#        json_result = get_request(API_URL_SENTIMENT, api_key=API_KEY_NLU, features="sentiment", text=text)
-#        print(json_result)
-#        if json_result:
-#            sentiment_result = json_result["sentiment"]["document"]["label"]
-#    finally:
-#        print(text)
-#        print(sentiment_result)
-#        return sentiment_result
-
     authenticator = IAMAuthenticator(API_KEY_NLU)
     natural_language_understanding = NaturalLanguageUnderstandingV1(
         version='2021-03-25',
