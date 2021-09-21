@@ -103,7 +103,7 @@ def get_dealerships(request):
 def get_dealer_reviews(request, dealer_id, dealer_name):
     if request.method == "GET":
         url = API_URL_REVIEWS
-        reviews = get_dealer_reviews_from_cf(url, dealerId=dealer_id)
+        reviews = get_dealer_reviews_from_cf(url, dealerid=dealer_id)
         context = {
             "dealer_id": dealer_id,
             "dealer_name": dealer_name,
