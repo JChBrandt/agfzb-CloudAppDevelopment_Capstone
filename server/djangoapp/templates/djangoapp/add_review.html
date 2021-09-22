@@ -11,6 +11,92 @@
 
 </head>
     <body>
-    <!--Add review form here -->
+
+    <div class="container-fluid">
+    <div class="row no-gutters">
+        <div class="col-sm d-flex justify-content-start">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Best Dealerships</a>
+        </div>
+        <nav class="navbar nav-pills">
+        {% block nav %}
+        {% block nav-home %}<a class="nav-item nav-link active" href="{% url 'djangoapp:index' %}">Home</a>{% endblock %}
+        {% block nav-about %}<a class="nav-item nav-link" href="{% url 'djangoapp:about' %}">About</a>{% endblock %}
+        {% block nav-contact %}<a class="nav-item nav-link" href="{% url 'djangoapp:contact' %}">Contact</a>{% endblock %}
+        {% endblock %}
+        </nav>
+        </div>
+        <div class="col-sm d-flex justify-content-end">
+        <nav class="navbar">
+         <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+                <li>
+                    <a class="btn btn-link" href="#">{{ user.first_name }} ({{ user.username }})</a>
+                    <a class="btn btn-link" href="#"></a><a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+                </li>
+        {% else %}
+        <li>
+         <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                 <input type="text" class="form-control" placeholder="Username" name="username" >
+                 <input type="password" class="form-control" placeholder="Password" name="psw" >
+                 <button class="btn btn-primary" type="submit">Login</button>
+                 <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+            </div>
+         </form>
+        </li>
+        {% endif %}
+        </ul>
+        </nav>
+        </div>        
+    </div>
+</div>
+    
+    {% if user.is_authenticated %}
+    <h1 class="skeleton-heading">Add Review for {{dealer_name}}</h1>
+    <form action="{% url 'djangoapp:add_review' dealer_id dealer_name %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input id="fullname" class="form-control" type="text" name="fullname" placeholder={{ user.first_name }}{{user.lastname}} value="{{ user.first_name }}" required>            
+        </div>
+        <div class="form-group">
+            <label for="review">Review Text</label>
+            <textarea id="review" class="form-control" name="review" placeholder="Enter the review content..." rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <div class="custom-control custom-checkbox">
+                <input id="purchase" class="custom-control-input" type="checkbox" name="purchasecheck" {% if not cars %}disabled{% endif %}>
+                <label for="purchase" class="custom-control-label">
+                    I have purchased a car from {{ dealer_name }}.
+                </label>
+                <p class="text-muted">
+                    (Please select the purchased car below if checked.)
+                </p>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <label for="purchasedate">Purchase Date</label>
+                <input id="purchasedate" class="form-control" type="date" name="purchasedate" {% if not cars %}disabled{% endif %}>
+            </div>
+            <div class="form-group col">
+                <label for="car">Purchased Car</label>
+                <select id="car" class="custom-select" name="car" {% if not cars %}disabled{% endif %}>
+                    {% for car in cars %}
+                    <option value={{ car.carmodel_id }}>{{ car.carmake.name }} {{ car.name }} - {{ car.year }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button class="button" type="submit">Save review</button>
+    </form>
+    {% else %}
+        <p class="lead">Please login to add a review.</p>
+    {% endif %}
+
+
     </body>
 </html>
