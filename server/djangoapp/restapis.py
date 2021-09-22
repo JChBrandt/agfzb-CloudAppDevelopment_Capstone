@@ -16,7 +16,6 @@ from .local_params_settings import COUCH_URL, COUCH_USERNAME, IAM_API_KEY, API_U
 #                                     auth=HTTPBasicAuth('apikey', api_key))
 def get_request(url, api_key=None, **kwargs):
     try:
-        print("params: ",kwargs)
         if api_key:
             response = requests.get(url, headers={'Content-Type': 'application/json'},
                                         auth=HTTPBasicAuth('apikey', api_key),
@@ -28,7 +27,6 @@ def get_request(url, api_key=None, **kwargs):
         # If any error occurs
         print("Network exception occurred")
     status_code = response.status_code
-    print("With status {} ".format(status_code))
     json_data = json.loads(response.text)
     return json_data
 
