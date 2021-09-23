@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import CarModel
-from .restapis import get_dealers_from_cf, get_dealer_reviews_from_cf
+from .restapis import get_dealers_from_cf, get_dealer_reviews_from_cf, add_dealer_review_to_db, get_request
 from .local_params_settings import API_URL_DEALERSHIPS, API_URL_REVIEWS
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -117,21 +117,20 @@ def add_dealer_review(request, dealer_id, dealer_name):
     if request.method == "GET":
         cars = CarModel.objects.filter(dealerid=dealer_id)
         context = {"cars": cars, "dealer_id": dealer_id, "dealer_name": dealer_name}
-        print("Context: ", context)
         add_review_view = render(request, 'djangoapp/add_review.html', context)
     if request.method == "POST" and request.user.is_authenticated:
         form = request.POST
         review = {
-            "review_id": random.randint(0, 100),
+            "review_id": get_request(API_URL_REVIEWS, size=True)["size"]+1,
             "reviewer_name": form["fullname"],
             "dealership": dealer_id,
             "review": form["review"]
         }
-        if form.get("purchase"):
+        if form.get("purchasecheck"):
             review["purchase"] = True
             review["purchase_date"] = form["purchasedate"]
             car = get_object_or_404(CarModel, pk=form["car"])
-            review["car_make"] = car.carmake.name
+            review["car_make"] = car.maker.name
             review["car_model"] = car.name
             review["car_year"] = car.year
         json_result = add_dealer_review_to_db(review)
