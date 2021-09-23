@@ -7,7 +7,7 @@ import requests
 import json
 from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
-from .local_params_settings import COUCH_URL, COUCH_USERNAME, IAM_API_KEY, API_URL_SENTIMENT, API_KEY_NLU
+from .local_params_settings import COUCH_URL, COUCH_USERNAME, IAM_API_KEY, API_URL_SENTIMENT, API_KEY_NLU, API_URL_REVIEWS
 
 # API_URL_DEALERSHIP, API_URL_REVIEW, API_URL_SENTIMENT
 
@@ -34,11 +34,15 @@ def get_request(url, api_key=None, **kwargs):
 # e.g., response = requests.post(url, params=kwargs, json=payload)
 def post_request(url, json_payload, **kwargs):
     try:
+        print("URL: ",url)
+        print("Review: ", json_payload)
+        print("Params: ", kwargs)
         response = requests.post(url, json=json_payload, params=kwargs)
         json_data = json.loads(response.text)
         return response
     except:
-        print(json_data)
+        print("Post request error.")
+        return {"message" : "Error"}
 
 
 # Create a get_dealers_from_cf method to get dealers from a cloud function
@@ -102,7 +106,7 @@ def get_dealer_reviews_from_cf(url, dealerid):
     return results
 
 
-def add_dealer_review(review_to_post):
+def add_dealer_review_to_db(review_to_post):
     review = {
         "id": review_to_post['review_id'],
         "name": review_to_post['reviewer_name'],
@@ -114,7 +118,7 @@ def add_dealer_review(review_to_post):
         "car_model": review_to_post.get('car_model'),
         "car_year": review_to_post.get('car_year')
     }
-    return post_request(API_URL_REVIEW, review)
+    return post_request(API_URL_REVIEWS, review, dealerid=review["dealership"])
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
 def analyze_review_sentiments(text):
