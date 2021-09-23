@@ -59,7 +59,7 @@
         {% csrf_token %}
         <div class="form-group">
             <label for="fullname">Full Name</label>
-            <input id="fullname" class="form-control" type="text" name="fullname" placeholder={{ user.first_name }}{{user.lastname}} value="{{ user.first_name }}" required>            
+            <input id="fullname" class="form-control" type="text" name="fullname" placeholder={{ user.first_name }}{{user.lastname}} value="{{ user.first_name }} {{ user.last_name }}" required>            
         </div>
         <div class="form-group">
             <label for="review">Review Text</label>
@@ -85,7 +85,7 @@
                 <label for="car">Purchased Car</label>
                 <select id="car" class="custom-select" name="car" {% if not cars %}disabled{% endif %}>
                     {% for car in cars %}
-                    <option value={{ car.carmodel_id }}>{{ car.carmake.name }} {{ car.name }} - {{ car.year }}
+                    <option value={{ car.id }}>{{ car.maker.name }} {{ car.name }} {{ car.modeltype }} {{car.engine }} - {{ car.year }}
                     </option>
                     {% endfor %}
                 </select>
