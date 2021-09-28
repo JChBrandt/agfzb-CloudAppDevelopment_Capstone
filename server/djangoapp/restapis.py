@@ -38,6 +38,7 @@ def post_request(url, json_payload, **kwargs):
         print("Review: ", json_payload)
         print("Params: ", kwargs)
         response = requests.post(url, json=json_payload, params=kwargs)
+        print("Response: ", response.status_code)
         json_data = json.loads(response.text)
         return response
     except:
@@ -107,7 +108,7 @@ def get_dealer_reviews_from_cf(url, dealerid):
 
 
 def add_dealer_review_to_db(review_to_post):
-    review = {
+    review = {"review" : {
         "id": review_to_post['review_id'],
         "name": review_to_post['reviewer_name'],
         "dealership": review_to_post['dealership'],
@@ -117,8 +118,8 @@ def add_dealer_review_to_db(review_to_post):
         "car_make": review_to_post.get('car_make'),
         "car_model": review_to_post.get('car_model'),
         "car_year": review_to_post.get('car_year')
-    }
-    return post_request(API_URL_REVIEWS, review, dealerid=review["dealership"])
+    }}
+    return post_request(API_URL_REVIEWS, review, dealerid=review_to_post["dealership"])
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
 def analyze_review_sentiments(text):
