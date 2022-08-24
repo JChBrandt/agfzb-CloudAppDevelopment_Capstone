@@ -1,0 +1,7 @@
+COUCH_URL = "https://ae837a34-028c-40cb-936e-bf1558aec1c4-bluemix.cloudantnosqldb.appdomain.cloud"
+COUCH_USERNAME = "ae837a34-028c-40cb-936e-bf1558aec1c4-bluemix"
+IAM_API_KEY = "_D2xRGqlvHbkyGt4xAffU6lxyt2LcPEDRnQQBkUEyTrV"
+API_URL_SENTIMENT = "https://api.eu-gb.natural-language-understanding.watson.cloud.ibm.com/instances/61ec7bc0-eb99-4f62-9ce8-0d0a68a80cca"
+API_KEY_NLU = "-I-DQDIe1-tkFFBrlwGv0kRZxOiSBTmHh5q-l-QtFbDQ"
+API_URL_REVIEWS = "https://4092f712.eu-gb.apigw.appdomain.cloud/api/review"
+API_URL_DEALERSHIPS = "https://4092f712.eu-gb.apigw.appdomain.cloud/api/dealership"
