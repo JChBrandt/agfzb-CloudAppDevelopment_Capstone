@@ -1,5 +1,6 @@
 requests
 Django
+wheel
 gunicorn==20.0.4
 Pillow==8.0.1
 cloudant
